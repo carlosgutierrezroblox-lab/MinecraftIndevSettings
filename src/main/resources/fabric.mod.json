@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "minecraft_indev_settings",
+  "version": "${version}",
+  "name": "Minecraft Indev Settings",
+  "description": "Interfaz y opciones inspiradas en Minecraft Indev.",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "net.indev.settings.IndevSettingsClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
