@@ -1,0 +1,39 @@
+
+name: Build Minecraft Indev Settings
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar proyecto
+        uses: actions/checkout@v4
+
+      - name: Instalar Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Preparar Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.6.0'
+
+      - name: Compilar mod
+        run: gradle build
+
+      - name: Guardar archivo JAR
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: Minecraft-Indev-26.3
+          path: build/libs/*.jar
